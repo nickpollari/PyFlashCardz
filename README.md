@@ -1,0 +1,1 @@
+# This application was created as an easy solution to leverage IPywidgets to create flash cards. It is a work in progress. I am using this to create interactive flash cards to help me pass AWS Solutions Architect exam. 

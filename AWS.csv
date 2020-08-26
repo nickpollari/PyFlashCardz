@@ -1,0 +1,27 @@
+Group,Front,Back
+EC2 EBS,Can I perform actions on an existing EBS Snapshot?,"Yes, using the AWS API, CLI, and AWS Console"
+EC2 EBS,What is the API name for the General Purpose SSD,gp2
+EC2 EBS,What is the API name for the Provisioned IOPS SSD?,io1
+EC2 EBS,What is the API name for the throughput optimized HDD?,st1
+EC2 EBS,What is the API name for the cold HDD?,sc1
+EC2 EBS,What is the API name for the EBS Magnetic Drive?,standard
+EC2 EBS,What types of EBS storage are available?,"1. General Purpose
+2. Provisioned IOPS
+3. Throughput optimized
+4. Cold Hard Disk Drive
+5. Magnetic"
+EC2 EBS,What is EBS?,"Stands for ""Elastic Block Storage"" which provides persistent block storage volumes for use with EC2.
+
+Each EBS Volume is automatically replicated within its Availability Zone"
+Storage Gateway,Where are files stored from file gateway?,Directly in S3
+Storage Gateway,What is the Tape Gateway?,Durable and Cost Effective solution to archive data in the cloud that allows you to leverage your existing tape based backup application infrastructure to store data on virtual tape cartridges
+Storage Gateway,What is a cached volume?,Allows you to use S3 as your primary data storage while retaining frequently accessed data locally in your storage gateway. This will help minimize your need to scale on premises storage
+Storage Gateway,What is a stored volume?,Lets you store your primary data locally while asynchronously backing up that data to AWS. This gives on-premises applications low latency access to their data sets and is backed up to S3 in the form of EBS snapshots
+Storage Gateway,What are the two types of supported storage for the volume gateway?,"1. Stored Volumes
+2. Cached Volumes"
+Storage Gateway,What is Volume Gateway?,Provides your applications with disk volume using the ISCI block protocol which can be asynchronously backed up as point in time EBS snapshots 
+Storage Gateway,What is File Gateway?,Files are stored as objects in your s3 buckets which can be accessed through a network file system mount. Once objects are transferred to S3 they can be managed as native S3 objects with bucket policies and versioning
+Storage Gateway,What are the 3 offerings for Storage Gateway?,"1. File Gateway
+2. Volume Gateway
+3. Tape Gateway"
+Storage Gateway,What is the Storage Gateway?,A service which connects an on promise software appliance with cloud based storage to provide seamless and secure integration between an organizations on premise IT environment and AWS storage infrastructure. 
