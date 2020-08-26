@@ -26,6 +26,15 @@ class Presenter(object):
 		return self.__widgets['application']
 	
 	def __build_app(self):
+		# build top label
+		top_label_html = """
+						<font size=1px;!important>
+						
+						Author: nickpollari@gmail.com
+						
+						</font>
+						"""
+		top_label = ipywidgets.HTML(top_label_html)
 		group_hbox = self.__widgets['group_hbox']
 		# build prev button
 		prev_button = self.__build_prev_card_button()
@@ -38,7 +47,7 @@ class Presenter(object):
 									   layout={'align_items' : 'center',
 									   		   'align_content' : 'center'})
 		# build the application
-		app = ipywidgets.VBox([group_hbox, card_section])
+		app = ipywidgets.VBox([top_label,group_hbox, card_section])
 		self.__widgets['application'] = app
 
 	def __build_card_container(self):
