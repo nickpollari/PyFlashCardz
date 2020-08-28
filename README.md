@@ -8,3 +8,4 @@ This application was created as an easy solution to leverage IPywidgets to creat
 [ ] support tree structure for groups
 [ ] support only looking at certain cards by ID
 [ ] add support for shuffling cards
+[ ] remove the extra borders that I'm still using to judge sizing
