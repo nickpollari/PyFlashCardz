@@ -88,7 +88,9 @@ class Flashcard(object):
         card_face = ipywidgets.VBox([card_front],
                                     layout={'min_width' : '350px',
                                             'min_height' : '150px',
-                                            'border' : '2px solid black'})
+                                            'border' : '2px solid black',
+                                            'max_width' : '350px',
+                                            'max_height' : '150px'})
         self.__widgets['card_face'] = card_face
         # build a widget to show what side
         # of the card is being displayed
@@ -156,9 +158,17 @@ class Flashcard(object):
         """
         # ensure text is actually a str
         clean_text = str(text)
+        # convert to HTML styling
+        html_text = """
+                    <div style="line-height : 15px;>
+                    <p style="display : inline-block;>
+                    %s
+                    </p>
+                    </div>
+                    """ % clean_text
         # create a widget for front/back of card
-        text_widget = ipywidgets.HTML(clean_text, layout={'border' : '3px solid orange',
-                                                          'min_height' : '95%'})
+        text_widget = ipywidgets.HTML(html_text, layout={'border' : '3px solid orange',
+                                                         'min_height' : '95%'})
         return text_widget
 
     def __build_id_widget(self):

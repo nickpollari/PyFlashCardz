@@ -17,11 +17,63 @@ Storage Gateway,Where are files stored from file gateway?,Directly in S3
 Storage Gateway,What is the Tape Gateway?,Durable and Cost Effective solution to archive data in the cloud that allows you to leverage your existing tape based backup application infrastructure to store data on virtual tape cartridges
 Storage Gateway,What is a cached volume?,Allows you to use S3 as your primary data storage while retaining frequently accessed data locally in your storage gateway. This will help minimize your need to scale on premises storage
 Storage Gateway,What is a stored volume?,Lets you store your primary data locally while asynchronously backing up that data to AWS. This gives on-premises applications low latency access to their data sets and is backed up to S3 in the form of EBS snapshots
-Storage Gateway,What are the two types of supported storage for the volume gateway?,"1. Stored Volumes
-2. Cached Volumes"
+Storage Gateway,What are the two types of supported storage for the volume gateway?,1. Stored Volumes <br> 2. Cached Volumes
 Storage Gateway,What is Volume Gateway?,Provides your applications with disk volume using the ISCI block protocol which can be asynchronously backed up as point in time EBS snapshots 
 Storage Gateway,What is File Gateway?,Files are stored as objects in your s3 buckets which can be accessed through a network file system mount. Once objects are transferred to S3 they can be managed as native S3 objects with bucket policies and versioning
-Storage Gateway,What are the 3 offerings for Storage Gateway?,"1. File Gateway
-2. Volume Gateway
+Storage Gateway,What are the 3 offerings for Storage Gateway?,"1. File Gateway<br>
+2. Volume Gateway<br>
 3. Tape Gateway"
 Storage Gateway,What is the Storage Gateway?,A service which connects an on promise software appliance with cloud based storage to provide seamless and secure integration between an organizations on premise IT environment and AWS storage infrastructure. 
+Route 53,What is the Multi Value Answer routing policy?,"Lets you configure R53 to return multiple values, such as IP addresses, to DNS queries that also runs a health chock on each resource. The returned values are chosen randomly amongst the healthy end points."
+Route 53,Which routing policy does not support health checks?,Simple Routing Policy
+Route 53,What is the Weighted Routing Policy and how does it work on Route 53?,Allows you to split your traffic based on different weights assigned<br>ie:<br>Set 10% of traffic to go to A<br>Set 90% of traffic to go to B
+Route 53,What is the Latency Based Routing Policy and how does it work in Route 53?,Allows you to route your traffic based on the lowest network latency for your end user
+Route 53,What is the Simple Routing Policy and how does it work on Route 53,"Randomly chosen IP address from a record of multiple IP addresses to be returned, no health checks are available"
+Route 53,What is the Geoproximity Routing Policy?,Lets Route 53 route traffic to your resources based on the geographic location of your users relative to your resources. In order to use this you MUST leverage Route 53 Traffic Flow.
+Route 53,What is Geolocation Routing Policy?,Lets you choose where your traffic will be sent based on the geographic location of your users (the location from which the DNS query originates)
+Route 53,What options are available for deciding where a resources is routing its content when using Geolocation Routing on Route 53?,By Continent<br>By Country
+Route 53,How does the Failover Routing Policy work?,You make two records and specify a primry and secondary. Associate the primary with a health check and if the healthcheck fails the secondary is used
+Route 53,What are all the routing policies available on Route 53?,Simple<br>Weighted<br>Latency Based<br>Failover<br>Geolocation<br>Geoproximity<br>Multi Value Answer
+Route 53,How can I be alerted when a resource fails a health check?,Set up a notification using SNS to notify you
+Route 53,"What is considered best practice, in terms of targets, for Route 53 to support a Highly Available Architecture?",Use Route 53 to distribute load across multiple ELB's
+AWS EMR,What is Amazon EMR?,Cloud based big data platform for processing vast amount of data using open source tools. Can run Petabyte scale analysis at less than half the cost of traditional on premises solutions and over 3x faster than Apache Spark
+AWS EMR,What does Amazon EMR stand for?,Elastic Map Reduce
+AWS EMR,How do you handle logging with EMR?,Configure the cluster to periodically archive the log files stored in the MASTER node to S3
+AWS EMR,What are the components of the cluster for EMR?,Master Node<br>Core Node<br>Task Node (Optional)
+AWS EMR,What is a Master Node?,A Node that manages the cluster and tracks the status of tasks and monitors the health of the cluster. Every cluster has a Master node
+AWS EMR,What is a Core Node?,"A node with software components that run tasks and stores data, multi node clusters have at least one core node"
+AWS EMR,What is a Task Node?,"A node with software components that only runs tasks and does not store any data, these nodes are optional"
+AWS EMR,What underlying service makes up the instance used in a given Node?,EC2 Instances
+Directory Services,What would you use Amazon Cognito User Pools for?,When you need to provide sign up and sign in for mobile or web applications which also supports social media identities so users can login using their FB account for instance
+Directory Services,What is AWS Directory Service?,This is a microsoft centric solution that is a family of managed services that connect AWS to on premise Microsoft Active Directory as a stand alone directory in the cloud. This lets people use existing corporate credentials to log in to AWS
+Directory Services,What is AWS Managed Microsoft Active Directory?,This is two Active Directory domain controllers running windows server which are running in different availability zones that can connect directly to apps in your VPC. Only your firm has access to these Domain Controllers for security reasons
+Directory Services,What is Activey Directory (AD) from Microsoft?,"On premise directory service consisting of users, groups, and computers organized as trees, allowing you to apply group policies. It is supposed to be highly available but can be a lot of overhead."
+Directory Services,"What does ""DC"" refer to in the context of AWS directory service?",Domain Controller
+Directory Services,What are AWS responsibilities when it comes to AWS managed Microsoft active directory?,"Mutli Zone Deployment<br>Patching, Monitoring, Recovery o f Domain Controllers<br>Instance Rotation<br>Snapshots & Restore"
+Directory Services,What are your responsibilities when it comes to AWS managed Microsoft Active Directory?,Users and Groups<br>Group Policy Objects (GPO)<br>Scaling of DC's<br>Standard AD Tools<br>Trusts (resource forest)<br>Certificate Authorities (LDAPS)<br>Federation
+Directory Services,What is the key difference between Simple AD and Managed Microsoft AD on AWS?,Simple AD does not support Trusts so it cant join to on premises AD
+Directory Services,What is a Trust in the context of Active Directories?,A connection between the on premise active directory and the AWS cloud deployed Active Directory
+Directory Services,What is AWS Simple AD?,"This is a scaled down version of Microsoft Active Directory with basic features and comes in two sizes, Small (<500) and Large (<5000) and it does not support Trusts"
+Directory Services,What is AWS AD Connector?,Acts as a directory Gateway (proxy) for on-premise AD and allows the on-premise users to connect to AWS using AD
+Directory Services,Why would I want to use AWS AD Connector?,This is the best choice when you want to use your existing on-premise AD to connect to supported AWS services. It helps prevent any caching of info in the cloud and allows onn-premise users to connect to AWS using AD. You can join EC2 instances to your on-premise AD domain as well
+Directory Services,What AWS services allow you to sign in to things like AWS workplaces or AWS Quicksight using your AD credentials?,AWS Managed Microsoft Active Directory<br>AWS Simple AD<br>AWS AD Connector
+Directory Services,What are the services offered under AWS Directory Services that are Microsoft Compatible?,AWS Managed Microsoft Active Directory<br>AWS Simple AD<br>AWS AD Connector
+Directory Services,What Directory offering is best suited for Developers?,AWS Cloud Directory
+Directory Services,Where would I want to use Aws Cloud Directory?,"Applications that use Organization charts, course catalogs, and device resitries"
+Directory Services,What is AWS Cloud Directory?,A Directory based store intended for developers with multiple Hierarchies with hundreds of millions of objects. This is a fully managed Service
+Directory Services,What AWS Services are AD compatible?,AWS Managed Microsoft Active Directory<br>AWS Simple AD<br>AWS AD Connector
+Directory Services,What AWS Directory Services are NOT AD compatible?,Cloud Directory<br>Cognito User Pools
+Cloudwatch,Why might a cloudwatch alarm state change not trigger an EC2 Auto Scaling policy?,1. Autoscaling Option isnt enabled for the alarm<br>2. Auto Scaling Group has conflicting Simple Scaling or Step Scaling Policies which prevent some policies from being triggered<br>3. Auto Scaling Group has an incomplete lifecycle which is preventing simple policies from being applied
+Cloudwatch,What actions can be taken when a cloudwatch alarm is triggered?,"<b>EC2 Actions:</b> Stop, Terminate, Reboot, Recover<br><b>Auto Scale Actions:</b> Invoke a scaling policy, this continues to invoke configured action for every period the alarm remains in its new state (subject to auto scaling cool down period)<br><b>SNS Action:</b> Send email by pushing a message to an SNS topic"
+Cloudwatch,When is the Reocver EC2 action recommended to be used?,When a System Health Check Fails
+Cloudwatch,When is the Reboot EC2 action recommended to be used?,When the instance health check fails
+Cloudwatch,Can you use Cloudwatch to trigger alarms or notifications?,Yes
+Cloudwatch,What can Cloudwatch monitor?,"Resources like EC2, Autoscale Groups, ELBs, Route 53 health checks, EBS volumes, Storage Gateways, and Cloudfront"
+Cloudwatch,What is Cloudwatch?,A Monitoring Service to monitor your AWS resources as well as the applications that you run on AWS with a focus on resource performance
+Cloudwatch,What default metrics can Cloudwatch monitor?,"Things like CPU, Network, Disk, Status Checks"
+Cloudwatch,What actions can be taken on an EC2 instance when a Cloudwatch alarm is triggered?,"Stop, Terminate, Reboot, Recover"
+Cloudwatch,Why would I use a Reboot or Recover action on my EC2 instance when a Cloudwatch alarm is triggered?,To automatically reboot or recover the EC2 instance on to new hardware in the event of a system impairment
+Cloudwatch,Why would I use the Stop or Terminate action on my EC2 instance when a Cloudwatch alarm is triggered?,To help you save money when you no longer need an instance to be running
+Cloudwatch,"With respect to what actions can be taken, what is the key difference between Metric Alarms and Composite Alarms?",Composite Alarms can send SNS notifications but cannot perform EC2 actions or Auto Scaling
+Cloudwatch,What kind of alarms are supported in Cloudwatch? What do they do?,<b>Metric Alarm:</b> Watches a single metric or the result of a math expression based on the metrics<br><b>Composite Alarm:</b>Includes a rule expression that takes into account the alarm states of other alarms and only goes into ALARM state if all conditions of the rule are met
+Cloudwatch,Can you take multiple actions when an alarm is triggered?,Yes

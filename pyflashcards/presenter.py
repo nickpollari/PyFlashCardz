@@ -30,7 +30,8 @@ class Presenter(object):
 		top_label_html = """
 						<font size=1px;!important>
 						
-						Author: nickpollari@gmail.com
+						Author: Nicholas Pollari, nickpollari@gmail.com<br>
+						Link: <a href="https://github.com/nickpollari/PyFlashCardz">https://github.com/nickpollari/PyFlashCardz</a>
 						
 						</font>
 						"""
