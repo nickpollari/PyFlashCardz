@@ -77,3 +77,99 @@ Cloudwatch,Why would I use the Stop or Terminate action on my EC2 instance when 
 Cloudwatch,"With respect to what actions can be taken, what is the key difference between Metric Alarms and Composite Alarms?",Composite Alarms can send SNS notifications but cannot perform EC2 actions or Auto Scaling
 Cloudwatch,What kind of alarms are supported in Cloudwatch? What do they do?,<b>Metric Alarm:</b> Watches a single metric or the result of a math expression based on the metrics<br><b>Composite Alarm:</b>Includes a rule expression that takes into account the alarm states of other alarms and only goes into ALARM state if all conditions of the rule are met
 Cloudwatch,Can you take multiple actions when an alarm is triggered?,Yes
+RedShift,How many availability zones is Redshift deployed to and available in?,One
+RedShift,"With respect to data security, what measures are taken with data used for RedShift?",1. Data is encrypted during transit<br>2. Data is encrypted at rest using AES 256<br>3. By default RedShift will manage encryption keys
+RedShift,How does pricing work for RedShift?,"You are billed for compute Node hours, any backups made, and any data transfer"
+RedShift,What are the features of the backup functionality in RedShift?,"Backups are enabled by default and come with a 1 day retention period that can be extended to as high as 35 days. RedShift tries to maintain at least 3 copies of your data; the original, the replica on compute nodes, and a backup in S3. RedShift can asynchronously replicate your snapshots to S3 in another region for disaster recovery as well."
+RedShift,What is MPP?,"Massive Parallel Processing, this is what is used by RedShift to query and distribute data across all Nodes"
+RedShift,"In terms of Topology / Architecture, what configurations are available for RedShift?",1. Single Node<br>2. Multi Node consisting of a Leader (Master) Node which accepts queries and at least one Compute Node
+RedShift,What is AWS RedShift?,"Data Warehouse solution from AWS that supports massive computational power to query large datasets and perform business analytics, commonly referred to as OLAP (On Line Analytical Processing)"
+RedShift,What is the AWS Solution for Data Warehousing?,AWS RedShift
+S3,What are the reasons you would use Multi-part Upload?,1. Delivers quick recovery from network issues<br>2. Delivers improved throughput<br>3. Delivers the ability to begin an upload before you know the final object size<br>4. Delivers the ability to pause and resume object uploads<br>5. Delivers the ability to upload files larger than 5GB
+S3,What S3 Actions can trigger Event Notifications?,1. Object Created<br>2. Object Removed (supports deletes of versioned and unversioned)<br>3. Object Restored (restoration of objects from Glacier)<br>4. RRS Object Lost (detection of a reduced redundancy storage object that is lost)<br>4. Replication (replication failed or is no longer tracked by replication metrics)
+S3,What can the S3 Event Notification System send events to?,"SNS Topics, SQS Queues, Lambda Functions"
+S3,What is S3?,"Secure, Durable, Highly Scalable object storage to store and retrieve any amount of data from anywhere. Data is stored across multiple devices and facilities."
+S3,What are the file size minimum and maximum for S3?,0 bytes to 5TB
+S3,How much storage is available on S3?,Unlimited
+S3,What is the name of the container in which files (objects) are stored in on S3?,Buckets
+S3,What HTTP code is returned that will you know if your S3 upload is successful?,HTTP 200 Code
+S3,How does data consistency work for S3?,"Read after write for PUTS is available instantly, eventual consistency exists for overwrite PUTS and DELETE though (as it takes time to propagate across the system)"
+S3,What are the main features available for S3?,"Tiered storage, Lifecycle management, Versioning, Encryption, MFA Delete, Permissioning via Access Control Lists and Bucket Policies"
+S3,What S3 Tier is highly available and designed to sustain the loss of 2 facilities concurrently?,S3 Standard
+S3,What is the use case for S3 - IA?,This is for data that is accessed less frequently but requires rapid access when needed. It is a lower fee than S3 but you are charged a retrieval fee when dats is requested
+S3,What is S3 Intelligent Tiering?,An S3 offering that is designed to optimize costs by automatically moving data to the most cost effective access tier without performance impact or operational overhead
+S3,What are the storage classes available for S3?,1. S3 Standard<br>2. S3 IA (Infequently accessed)<br>3. S3 One Zone IA<br>4. S3 Intelligent Tiering<br>5. S3 Glacier<br>6. S3 Glacier Deep Archive
+S3,What are you charged for in S3?,"Storage amount, Number of requests, Storage Tier, Data Transfer Pricing, Transfer Acceleration, Cross Region Replication"
+S3,What are Access Control Lists used for?,Setting permissions on an individual object
+S3,What elements /fields define an S3 Object?,"Key, Value, Version ID, Metadata, Access Control Lists, Torrent"
+S3,What are Bucket Policies?,Bucket Level Permissioning
+S3,What are the default security settings for S3 Buckets?,The bucket is designated as private without public access
+S3,What are Access Logs?,Logs which keep track of all the requests made to the relevant S3 Bucket
+S3,What are the 3 types of Server Side Encryption (SSE) for data at rest available for S3?,1. S3 Managed Keys (SSE S3)<br>2. AWS Key Management Service (SSE KMS)<br>3. Customer Provided Keys (SSE-C)
+S3,"Once versioning is enabled on a bucket, how can it be disabled?","It can't be disabled, it can only be suspended"
+S3,How does versioning work for S3?,"Versioning stores all versions of an object including all writes, even if you delete an object. This is integrated with lifecycle rules and supports MFA delete as well"
+S3,What is S3 Lifecycle Management?,"This is a tool to automatically transition objects to different storage tiers based on their version or how often they are accessed. You can also use this to delete older objects using the ""Expire"" functionality"
+S3,What is an S3 object lock?,"Supports Write Once, Read Many (WORM) which can help prevent objects from being deleted or modified for a fixed amount of time or indefinitely"
+S3,What is S3 Governance Mode?,"In Governance mode, users cant overwrite or delete an object version or alter its lock settings unless they have special permissions. This protects objects against being deleted by most users, but you can still grant some uers permission to alter retention settings or delete the object"
+S3,What is S3 Compliance Mode?,"In Compliance mode a protected object version cannot be overwritten or deleted by any user, including the root user in your AWS account. When an object is locked in compliance mode its retention mode cant be changed and its retention period cannot be shortened. This mode ensures an object version cant be overwritten or deleted for the duration of the retention period."
+S3,What is a Legal Hold on an object?,Prevents an object version from being overwritten or deleted except it has no retention period associated with it and this mode remains in effect until it is removed
+S3,What are the different modes available for S3 Object Lock?,1. Governance<br>2. Compliance<br>3. Legal Hold
+S3,What is a Glacier Vault Lock?,"Similar to S3 Object Lock, it enforces compliance controls for individual S3 Glacier Vaults"
+S3,Can Object Locks be applied across an entire bucket?,Yes
+S3,How do prefixes for S3 objects impact performance for data retrieval?,The more prefixes you use (up to max of 4) the better performance you will get
+S3,How do you increase performance of uploads to S3?,Use Multi-part uploads
+S3,How do you increase performance of downloads from S3?,Utilize S3 Byte Range fetches
+S3,What is S3 Select?,Enables users to retreive only a subset of data from an object by using a simple SQL expression. By using this you can retrieve only the data needed by the application which can achieve drastic performance increases
+S3,What is S3 Glacier Select?,Allows you to run SQL queries directly against Glacier objects
+S3,What are the ways to share S3 Buckets across accounts?,1. To apply to the entire bucket you can use bucket policies and IAM (programmatic access only)<br>2. To apply to individual objects you can use Bucket ACL and IAM (programmatic access only)<br>3. You can create cross account IAM Roles to provide programmatic and console access
+S3,What is Athena?,An interactive query service which enables you to analyze and query data located in S3 using SQL. It is a serverless service and you pay per query and per TB scanned
+S3,What can Athena be used for?,1. Querying Log Files stored in S3<br>2. Generate Business reports based on data stored in S3<br>3. Analyze AWS Cost and Usage Reports<br>4. Run queries on click stream data
+S3,What are the use cases for Macie?,"Dashboards, Reporting, Alerts"
+S3,What is Macie?,"A Security service to discover, classify, and protect sensitive data (personally identifiable data) stored in S3"
+S3,What are the old and new PUT per second limits for S3?,Old: 100 PUTs per second<br>New: 3500 PUTs per second
+S3,What are the names of the URL Styles for S3?,1. Virtual Hosted Style<br>2. Path Style Access<br>3. Static Website URL<br>4. Legacy Global Endpoint URL
+S3,"With respect to the S3 URL components of; S3, Region, Bucket Name - In what order are these components combined for the Static Website URL for S3?",yourdomain.S3.Region<br>OR<br>bucketname.S3.Region
+S3,"With respect to the S3 URL components of; S3, Region, Bucket Name - In what order are these components combined for the Path Style Access URL for S3?",S3.Region where bucket name is a subdomain<br>ie:<br>HTTPS://S3.Region.amazonaws.com/bucket-name/
+S3,"With respect to the S3 URL components of; S3, Region, Bucket Name - In what order are these components combined for the Virtual Hosted Style URL for S3?",bucketname.S3.Region<br>ie:<br>HTTPS://bucket-name.S3.Region.amazonaws.com/
+S3,What S3 URL styles are being phased out or are limited use?,Path Style and Legacy Global Endpoint
+S3,S3 Buckets created after September 30 2020 will only support what URL style?,Virtual Hosted Style
+S3,"What are the retrieval speed options available for Glacier, in order of cost, from highest to lowest?",1. Expedited (Most Expensive)<br>2. Standard<br>3. Bulk
+S3,What is the rated Availability of S3 One Zone IA?,99.50%
+S3,What is the default max number of buckets per account?,100
+S3,What is the maximum allowed upload object size for a single PUT?,5GB
+RAM,What does AWS RAM stand for?,Resource Access Manager
+RAM,What kind of account structure would you need to have to use AWS RAM?,Multiple individual accounts or AWS organizations
+RAM,What is AWS Resource Access Manager?,A Tool that allows resource sharing between AWS Accounts
+RAM,What AWS Resources can be shared using RAM?,"App Mesh, Aurora, CodeBuild, EC2, EC2 Image Builder, License Manager, Resource Groups, Route 53"
+RAM,What is the use case for leveraging AWS RAM?,Multiple accounts need to use the same kind of resources like launching EC2 instances into a shared subnet between accounts
+RAM,"Account 1 has a resource group that is to be shared with Account 2. In the RAM Tool, what is Account 2 known as?",A Principal
+IAM,Can you create a customized sign in link for new users at the firm to use to log into AWS?,"Yes, you can also use that link to limit their permissions"
+IAM,Are Policy Documents appled regionally or globally?,Global
+IAM,"What is ""Power User Access""?",Access to all AWS services except the management of groups and users in IAM
+IAM,"What are ""Permission Boundaries"" used for?",Used to delegate administration to other users allowing them to create IAM Roles and Users
+IAM,How do Permission Boundaries work?,You can set a maximum amount of permissions that an Identity Based Policy can grant to an IAM entity and it allows only the accounts allowed by both its identity based policies and its permission boundaries
+IAM,"What are considered ""Entities"" in the context of IAM?",Roles and Users
+IAM,"What does the syntax look like for an ""ARN""?","Starts with:<br>ARN:PARTITION:SERVICE:REGION:ACCOUNT_ID:<br><br>Ends with one of the following ("":"" and ""/"" are interchangable but must be consistent):<br>- RESOURCE<br>-RESOURCE_TYPE/RESOURCE<br>- RESOURCE_TYPE/RESOURCE/QUALIFIER"
+IAM,"What is an ""ARN""?","Amazon Resource Name, this uniquely identifies a given AWS resource"
+IAM,"At a general level, what does IAM do?",Allows you to manage users and their level of access to AWS
+IAM,What features does IAM offer?,Centralized control of your AWS account<br>Temporary Access<br>Shared Access to your AWS account<br>Password Rotation Policy<br>Granular permissions<br>Identity Federation (Active Directory)<br>MFA
+IAM,What does IAM stand for?,Identity Access Management
+IAM,"With respect to Root Account Access Keys and Security, what is best practice?",Delete the root account access keys
+IAM,"After adding a user to a group, what pieces of information are available to us?",Access Key ID<br>Secret Access Key<br>Password
+IAM,What are new users assigned when created to give them Programmatic Access to AWS?,Access Key ID and Secret Access Keys
+IAM,"When new users are created, what permissions do they start with?",None
+IAM,What can we assign an IAM role to?,"1. An AWS Service (EC2, Lambda, etc)<br>2. Another AWS Account<br>3. Web Identity (Cognito or any OpenID Provider)<br>4. SAML 2.0 Federation (your corporate directory)"
+IAM,What are IAM Roles?,IAM Permissions that can be assigned to AWS resources
+IAM,What are IAM Users?,End users like the people of an Organization
+IAM,What are IAM Groups?,A Collection of Users
+CloudFront,What is a CloudFront Origin Access Identity and what is it used for?,This is a virtual user identity that is used to give the CludFront distribution permission to fetch a private object from an S3 bucket
+CloudFront,In what ways can CloudFront allow users to have secure access to private files locates in S3?,1. Origin Access Identity<br>2. Signed URLs<br>3. Signed Cookies
+CloudFront,What are the features of a CloudFront signed URL?,"This can have different origins (doesn't have to be EC2) where the key pair is account wide and managed by the root user. This can filter by date, path, IP address, expiration, etc and utilize caching features"
+CloudFront,"When we create a signed URL or Cookie we attach a Policy, what does the Policy include?","URL Expiration, IP Ranges, and Trusted Signers (which AWS Accounts can create Signed URLs)"
+CloudFront,What are the features of an S3 Signed URL?,This issue a request as the IAM user who creates the presigned URL and it has a limited lifetime
+CloudFront,"In terms of providing access to restricted content using CloudFront, what is the difference between a signed URL and a signed cookie?",A signed URL is for individual files while a signed cookie is for multiple files
+CloudFront,What types of distribution are supported on CloudFront?,Web Distribution and RTMP (used for media streaming)
+CloudFront,What are possible Origin locations for the CloudFront CDN?,S3 Bucket<br>EC2 Instance<br>Elastic Load Balancer<br>Route 53
+CloudFront,"What is the ""Origin"" in reference to in CloudFront?","The original location of all files the CDN will distribute which can be an S3 Bucket, EC2 instance, ELB, or Route 53"
+CloudFront,"What is the ""Distribution"" in reference to in CloudFront?",This is the name given to the CDN which consists of a collection of edge locations that deliver the content
+CloudFront,What is CloudFront?,The Amazon CDN (Content Distribution Network) made of edge locations
