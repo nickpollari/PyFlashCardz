@@ -90,7 +90,11 @@ class Flashcard(object):
                                             'min_height' : '150px',
                                             'border' : '2px solid black',
                                             'max_width' : '350px',
-                                            'max_height' : '150px'})
+                                            'max_height' : '150px', 
+                                            'align_content' : 'center',
+                                            'align_items' : 'center',
+                                            'justify_content' : 'center',
+                                            'justify_items' : 'center'})
         self.__widgets['card_face'] = card_face
         # build a widget to show what side
         # of the card is being displayed
@@ -105,9 +109,9 @@ class Flashcard(object):
         # where in the box the button shows up
         button_box = ipywidgets.VBox([flip_button],
                                     layout={'align_content' : 'center',
-                                             'align_items' : 'center',
-                                             'justify_content' : 'center',
-                                             'justify_items' : 'center'})
+                                            'align_items' : 'center',
+                                            'justify_content' : 'center',
+                                            'justify_items' : 'center'})
 
         # vertically stack the group, side_shown,
         # card_face, and card_id widgets
@@ -160,15 +164,16 @@ class Flashcard(object):
         clean_text = str(text)
         # convert to HTML styling
         html_text = """
-                    <div style="line-height : 15px;>
-                    <p style="display : inline-block;>
+                    <div style="line-height : 15px;
+                                margin: auto;">
+                    <p style="display : inline-block;">
                     %s
                     </p>
                     </div>
                     """ % clean_text
         # create a widget for front/back of card
-        text_widget = ipywidgets.HTML(html_text, layout={'border' : '3px solid orange',
-                                                         'min_height' : '95%'})
+        text_widget = ipywidgets.HTML(html_text, layout={'min_height' : '95%',
+                                                         'height' : '95%'})
         return text_widget
 
     def __build_id_widget(self):
