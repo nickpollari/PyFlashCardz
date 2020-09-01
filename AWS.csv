@@ -173,3 +173,44 @@ CloudFront,What are possible Origin locations for the CloudFront CDN?,S3 Bucket<
 CloudFront,"What is the ""Origin"" in reference to in CloudFront?","The original location of all files the CDN will distribute which can be an S3 Bucket, EC2 instance, ELB, or Route 53"
 CloudFront,"What is the ""Distribution"" in reference to in CloudFront?",This is the name given to the CDN which consists of a collection of edge locations that deliver the content
 CloudFront,What is CloudFront?,The Amazon CDN (Content Distribution Network) made of edge locations
+API Gateway,What is API Gateway?,"A fully managed service that allows developers to publish, maintain, monitor, and secure APIs at any scale. These APIs connect to applications services for accessing data, business logic, or functionality from the back end."
+API Gateway,What can API Gateway use as end points?,"Lambda, EC2, DynamoDB"
+API Gateway,What can API Gateway do?,1. Maintain multiple versions of your API<br>2. Expose HTTPS endpoints to define a RESTful API<br>3. Serverlessly connect to Lambda and DynamoDB<br>4. Send each API endpoint to a different target<br>5. Track and control API usage by API key<br>6. Throttle requests to prevent API abuse
+API Gateway,How do you configure API Gateway?,"1. Define an API (container)<br>2. Define resources and nested resources (URL paths)<br>3. For each resource select supported HTTP methods, set security, choose target, set request and response transformations"
+API Gateway,What is API caching?,"You can enable this to cache your endpoints response, which can reduce the number of calls made to your endpoint and improve the latency of the requests to your API. Responses are cached for a TTL and if the same request is made with API Gateway responds with the cached response."
+API Gateway,"How do we allow our different AWS components to talk to each other and overcome the ""same origin policy""?","By using CORS, which happens at the Server side (not the client code in the browser)"
+API Gateway,"What is ""Same Origin Policy""?","This is an important concept in web application security model to prevent cross site scripting attacks. A Web browser permits scripts contained in a first web page to access data in a second web page but only if both web pages have the same origin, so one domain cant access data from another"
+API Gateway,"What is ""CORS""?",Cross Origin Resource Sharing<br>This is enforced by the client browser and is a mechanism on the Server Side that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served
+API Gateway,"If you get an error from a HTTP request that says ""Origin Policy Cannot be read at the remote resource"" what do you need to do?",Enable CORS at the API Gateway
+API Gateway,Where does CORS have to be enabled?,API Gateway and S3
+SMPS,Why would you use Secrets Manager over Parameter Store?,Secrets Manager has the following functionality;<br>You can automatically rotate keys<br>It can automatically apply a new key or password in RDS for you<br>It can generate random secrets<br>It can be shared across accounts
+SMPS,What is Secrets Manager?,Similar to Parameter store but no limit on the number of secrets and it has the ability to automatically rotate secrets
+SMPS,What services integrate directly with Parameter Store?,"Cloudformation, Lambda"
+SMPS,How can we store our data to better organize it in Parameter Store?,In hierarchies (trees) up to 15 levels deep
+SMPS,What is Parameter Store?,"Component of AWS Systems Manager that is a secure serverless storage for configuration and secrets like Passwords, DB Connection strings, License Codes, API Keys, etc"
+HPC,What kind of compute and networking is available for HPC?,EC2 that is GPU or CPU optimized<br>EC2 Fleets<br>Placement Groups<br>Enhanced Networking<br>Elastic Network Adapter
+HPC,How can we get our data on to AWS to perform High Performance Computing?,Snowball<br>Snowmobile<br>Datasync<br>Direct Connect
+HPC,What orchestration and automation services make HPC possible?,AWS Batch<br>AWS Parallel Cluster
+HPC,What storage options are available for performing HPC?,EBS<br>Instance Store<br>S3<br>EFS<br>FSx for Lustre
+HPC,What is AWS Parallel Cluster?,"Open Source Cluster Management tool that makes it easy to deploy and manage clusters, it uses a simple text file to model and provision resources which can automate the creation of VPC, subnet, cluster type, and instance types"
+HPC,What is AWS Batch?,"Enables you to easily and efficiently run hundreds of thousands of batch computing jobs on AWS. It supports multi-node parallel jobs, so a single job can span multiple EC2 instances"
+Cognito,What is Web Identity Federation?,"This lets your users access AWS resources after they have successfully authenticated with a web based identity provider like Amazon, Facebook, or Google. Following successful authentication the user receives an authentication code from the web ID provider, which they can trade for temporary AWS security credentials"
+Cognito,What is Amazon Cognito?,Provides web identity federation with;<br>- sign up and sign in to your apps<br>- access for guest user<br>- acts as an identity broker between your application and web id providers so you don’t need to write any of that code<br>- synchronizes user data for multiple devices
+Cognito,What AWS service is recommended for use for all Mobile Application AWS Services to use?,Amazon Cognito
+Cognito,What does the temporary credentials granted through Cognito Map to?,A Specific IAM role
+Cognito,What is one of the primary security benefits of leveraging AWS Cognito?,No need for the application to embed or store AWS credentials locally on the device and it gives users a seamless experience across all mobile devices
+Cognito,What is a Cognito User Pool?,"A Directory used to manage sign up and sign in functionality for mobile and web applications, but this is just for your users. A successful authentication generates a JSON Web Token (JWT)"
+Cognito,What is a Cognito Identity Pool?,Provides AWS credentials to access AWS services like S3 or DynamoDB by actually granting the IAM Role
+Cognito,How does Cognito notify users whenever their data in the cloud changes?,Cognito uses SNS to send a notifcation to all the devices associated with a given user identity
+Cognito,What does Cognito keep track of?,The association between user identity and the various devices they sign in from. In order to provide a seamless experience cognito uses push synchronization to push updates and synchronize user data across multiple devices
+KMS,What does CMK stand for?,Customer Master Keys
+KMS,Up to what file size can CMK's encrypt or decrypt data?,Up to 4KB
+KMS,What is AWS KMS?,A Regional managed service that makes it easy to create and control encryption keys. It manages CMKs which never leave the region. This is a FIPS 140-2 Level 2 Service
+KMS,What are the 3 types of CMKs?,1. Customer Managed<br>2. AWS Managed<br>3. AWS Owned
+KMS,What is an AWS Managed CMK and what are its features?,These are free and used by default if you pick encryption in most AWS services. You can view them and they are dedicated to your account. The lifecycle and permissions of the key are managed by AWS
+KMS,What is a customer managed CMK and what are its features?,These are keys you create and control. You need to managed the rotation (lifecycle and permission) of the key. It is controlled via key policies and can be enabled/disabled
+KMS,What is an AWS owned CMK and what are its features?,This is owned and managed by AWS across multiple accounts. These are not in your account but a service can use this to protect the CMKs in your account
+KMS,What are the two types of encryption with CMKs?,1. Symmetric<br>2. Asymmetric
+KMS,"When you create a CMK in KMS, by default you get what kind of CMK encryption?",Symmetric
+KMS,What is a Symmetric CMK?,"Same key is used for encrypt and decrypt, based on AES 256. The data never leaves AWS unencrypted and you must call KMS API to use it"
+KMS,What is an Asymmetric CMK?,This is a mathematically related Public/Private key pair based on RSA and ECC. The Private key never leaves AWS unencrypted and you must call the KMS API to use the Private key. The Public key can be downloaded and used outside AWS. AWS Services that are integrated with KMS do not support asymmetric CMKs
