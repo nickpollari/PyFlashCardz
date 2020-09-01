@@ -144,13 +144,15 @@ class Presenter(object):
         iter_list = list(range(0,list_len,5))
         vboxes = list()
         for s_idx, e_idx in zip(iter_list[:-1],iter_list[1:]):
-            vbox = ipywidgets.VBox(group_box_list[s_idx:e_idx])
+            vbox = ipywidgets.VBox(group_box_list[s_idx:e_idx],
+                                    layout={'overflow_x' : 'hidden'})
             vboxes.append(vbox)
 
         # build groups title
-        groups_title = ipywidgets.HTML("<b>Groups:<b>")
+        groups_title = ipywidgets.HTML("<b>Groups:<b>",
+                                        layout={'min_width' : '100px'})
         vboxes.insert(0,groups_title)
-        final_box = ipywidgets.HBox(vboxes)
+        final_box = ipywidgets.HBox(vboxes, layout={'justify_content' : 'flex-start'})
         self.__widgets['group_hbox'] = final_box
 
     def __build_group_selector(self, group):
@@ -169,7 +171,8 @@ class Presenter(object):
         """
         checkbox = ipywidgets.Checkbox(description=group,
                                        value=True,
-                                       indent=True)
+                                       indent=False,
+                                       layout={'max_width' : '150px'})
         checkbox.observe(self.__group_checkbox_callback, names=['value'])
         self.__widgets[checkbox._model_id] = checkbox
         self._valid_groups[group] = True
