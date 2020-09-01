@@ -10,6 +10,7 @@ importlib.reload(util)
 # [ ] add validation of csv
 # [ ] support tree structure for groups
 # [ ] support only looking at certain cards by ID
+# [ ] include correct card ID
 
 
 class Presenter(object):

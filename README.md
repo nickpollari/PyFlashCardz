@@ -9,3 +9,4 @@ This application was created as an easy solution to leverage IPywidgets to creat
 [ ] support only looking at certain cards by ID
 [x] add support for shuffling cards
 [x] remove the extra borders that I'm still using to judge sizing
+[ ] include correct card ID
