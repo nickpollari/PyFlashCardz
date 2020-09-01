@@ -113,9 +113,12 @@ class Flashcard(object):
                                             'justify_content' : 'center',
                                             'justify_items' : 'center'})
 
+        # stack group and side shown horizontally
+        group_and_side_box = ipywidgets.HBox([group, side_shown],
+                                             layout={'justify_content' : 'space-between'})
         # vertically stack the group, side_shown,
         # card_face, and card_id widgets
-        card = ipywidgets.VBox([group, side_shown,
+        card = ipywidgets.VBox([group_and_side_box,
                                 card_face, card_id, button_box])
 
         # store this in widgets to be retrieved later

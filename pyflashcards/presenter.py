@@ -4,12 +4,12 @@ import pyflashcards.flashcard as flashcard
 import pyflashcards.util as util
 import importlib
 importlib.reload(flashcard)
+importlib.reload(util)
 
 
 # [ ] add validation of csv
 # [ ] support tree structure for groups
 # [ ] support only looking at certain cards by ID
-# [ ] add support for shuffling cards
 
 
 class Presenter(object):
@@ -58,8 +58,11 @@ class Presenter(object):
         card_section = ipywidgets.HBox([prev_button,card_container,next_button],
                                        layout={'align_items' : 'center',
                                                'align_content' : 'center'})
+        # build shuffle card button
+        shuffle_button = self.__build_shuffle_card_button()
         # build the application
-        app = ipywidgets.VBox([top_label,group_hbox, card_section])
+        app = ipywidgets.VBox([top_label, group_hbox,
+                               shuffle_button,card_section])
         self.__widgets['application'] = app
 
     def __build_card_container(self):
@@ -269,3 +272,27 @@ class Presenter(object):
         # set this card to be displayed
         curr_children = [next_card.get_widget()]
         self.__widgets['card_container'].children = curr_children
+
+    def __build_shuffle_card_button(self):
+        """
+        Function for creating a button allowing
+        the user to shuffle the cards
+
+        Returns:
+            btn (ipywidgets.Button)
+        """
+        btn = ipywidgets.Button(description='Shuffle Cards',
+                                button_style='info')
+        btn.on_click(self.__shuffle_btn_callback)
+        return btn
+
+    def __shuffle_btn_callback(self, btn):
+        """
+        Callback function to shuffle
+        the cards
+
+        Parameters:
+            btn (ipywidgets.Button): shuffle button
+        """
+        self._valid_cards.shuffle()
+
